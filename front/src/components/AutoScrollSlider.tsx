@@ -1,0 +1,55 @@
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+import { Recorder } from "./recorder";
+import { useEffect, useState } from "react";
+
+import "@splidejs/react-splide/css";
+
+export const AutoScrollSlider = ({ musicId }) => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch(`/api/sheet_music/${musicId}`)
+      .then((res) => res.json())
+      .then((json) => setData(json.data));
+  }, [musicId]);
+
+  return (
+    <div style={{ padding: "40px" }}>
+      <Splide
+        options={{
+          // type: "loop",
+          type: "slide",
+          rewind: false,
+
+          perPage: 4,
+          gap: "1rem",
+
+          arrows: false,
+          pagination: false,
+
+          pauseOnHover: false,
+          pauseOnFocus: false,
+          resetProgress: false,
+
+          autoScroll: {
+            speed: 2, //取得データのBPMにしたい
+          },
+        }}
+        extensions={{ AutoScroll }}
+      >
+        {data.map((ele, ind) => (
+          <SplideSlide
+            key={ind}
+            className="slide"
+            style={{
+              width: `${(4 / ele.dilay) * 150}mm`,
+              // height: `${(4 / ele.dilay) * 150}mm`,
+            }}
+          >
+            <Recorder data={ele} />
+          </SplideSlide>
+        ))}
+      </Splide>
+    </div>
+  );
+};
