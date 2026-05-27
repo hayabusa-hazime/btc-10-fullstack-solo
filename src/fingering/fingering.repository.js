@@ -1,4 +1,4 @@
-function createFingeringRepository(knex, table = "fingering") {
+function createFingeringRepository(knex, table = "fingaring") {
   //後からユーザのデータでのクエリを実施する
 
   const list = async () => {

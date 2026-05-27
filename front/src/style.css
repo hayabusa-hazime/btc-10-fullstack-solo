@@ -1,4 +1,10 @@
 .slide {
   border: solid 1px black;
-  height: 400px;
+  height: 500px;
+}
+
+.finger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

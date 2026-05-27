@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 export const HalfHole = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const radius = 50;
+  const radius = 17;
   const color = "black";
   useEffect(() => {
     const canvas = canvasRef.current;
